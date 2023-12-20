@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "ListHotels";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Seçilen Şehir: @ViewBag.SelectedCity</h2>
+
+<h3>Hoteller:</h3>
+<ul>
+    @foreach (var hotel in ViewBag.Hotels)
+    {
+        <li>@hotel.Name</li>
+    }
+</ul>

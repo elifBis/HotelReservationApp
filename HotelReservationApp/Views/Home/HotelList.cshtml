@@ -1,0 +1,111 @@
+﻿@* @model List<Hotel>
+@{
+    ViewData["Title"] = "HotelList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>HotelList</h1>
+
+<h2>Seçilen Şehirdeki Oteller</h2>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var hotel in Model)
+        {
+            <li>
+                <strong>@hotel.Name</strong>
+                <p>@hotel.Description</p>
+                <!-- Diğer otel bilgileri... -->
+                <!-- Otel detay sayfasına giden bağlantı -->
+                <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">Detayları Gör</a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Seçilen şehirde otel bulunamadı.</p>
+} *@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+@* @using EntityLayer.Concrete
+@model List<Otel> *@
+@model List<Hotel>
+
+
+<!doctype html>
+<html lang="zxx">
+
+<body>
+
+
+
+    <section class="w3l-about-breadcrumb text-left">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+            <div class="container">
+                <h2 class="title">Oteller</h2>
+                <ul class="breadcrumbs-custom-path mt-2">
+                    <li><a href="#url">Anasayfa</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Oteller </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+   
+    
+    <section class="grids-1 py-5">
+        <div class="grids py-lg-5 py-md-4">
+             
+            <div class="container">
+                <h3 class="hny-title mb-5">Oteller</h3>
+                
+                <div class="row">
+@*                     @foreach (var item in Model)
+                    {
+                    <div class="col-lg-4 col-md-4 col-6">
+                        <div class="column">
+                            <a href="/OtelDetay/Index"><img src="/Template/assets/images/g1.jpg" alt="" class="img-fluid"></a>
+                            <div class="info">
+                                <h4><a href="/OtelDetay/Index">@item.OtelAd</a></h4>
+                                <p>@item.OtelBolge</p>
+                
+                            </div>
+                            
+                        </div>
+                    </div>
+              } *@
+                    @foreach (var hotel in Model)
+                    {
+                        <li>
+                            <strong>@hotel.Name</strong>
+                            <p>@hotel.Description</p>
+                            <!-- Diğer otel bilgileri... -->
+                            <!-- Otel detay sayfasına giden bağlantı -->
+                            <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">Detayları Gör</a>
+                        </li>
+                    }
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </section>
+
+   
+
+
+
+
+
+
+
+</body>
+
+</html>
+

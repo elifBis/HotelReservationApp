@@ -1,0 +1,38 @@
+﻿@* @model HotelReservationApp.Models.HotelDetailsViewModel
+
+<h2>@Model.Hotel.Name Detayları</h2>
+
+<dl>
+    <dt>Adı:</dt>
+    <dd>@Model.Hotel.Name</dd>
+
+    <dt>Şehir:</dt>
+    <dd>@Model.Hotel.City.Name</dd>
+
+    <!-- Diğer otel detayları... -->
+
+    <dt>Oda Tipleri:</dt>
+    <dd>
+        @foreach (var roomType in Model.RoomTypes)
+        {
+            <p>@roomType.Name - Kapasite: @roomType.Capacity - Gecelik Fiyat: @roomType.PricePerNight</p>
+        }
+    </dd>
+</dl> *@
+@model HotelReservationApp.Models.HotelDetailsViewModel
+@{
+    ViewData["Title"] = "HotelDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Hotel.Name</h1>
+
+<!-- Diğer otel detay bilgileri... -->
+@foreach (var roomType in Model.RoomTypes)
+{
+    <div>
+        <h3><a asp-controller="Reservation" asp-action="MakeReservation" asp-route-roomTypeId="@roomType.Id">@roomType.Name</a></h3>
+        <p>@roomType.Name</p>
+        <p>Günlük Fiyat: @roomType.PricePerNight</p>
+    </div>
+}

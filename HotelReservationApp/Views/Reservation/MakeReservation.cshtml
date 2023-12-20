@@ -1,0 +1,61 @@
+﻿@model HotelReservationApp.Models.ReservationModel
+
+@{
+    ViewData["Title"] = "Make Reservation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Make Reservation</h1>
+
+<form asp-action="MakeReservation" method="post">
+    <div class="form-group">
+        <label asp-for="RoomTypeId">RoomTypeId</label>
+        <input asp-for="RoomTypeId" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckInDate">Check-In Date</label>
+        <input asp-for="CheckInDate" type="date" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckOutDate">Check-Out Date</label>
+        <input asp-for="CheckOutDate" type="date" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalPrice">Total Price</label>
+        <input asp-for="TotalPrice" class="form-control" readonly />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Make Reservation</button>
+</form>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkInDateInput = document.getElementById('CheckInDate');
+            var checkOutDateInput = document.getElementById('CheckOutDate');
+            var totalPrice = document.getElementById('TotalPrice')
+           
+
+            checkInDateInput.addEventListener('input', calculateTotal);
+            checkOutDateInput.addEventListener('input', calculateTotal);
+            totalPriceText.addEventLİstener('input', calculateTotal);
+
+            function calculateTotal() {
+                var checkInDate = new Date(checkInDateInput.value);
+                var checkOutDate = new Date(checkOutDateInput.value);
+
+                
+
+                if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
+                    var oneDay = 24 * 60 * 60 * 1000;
+                    var totalNights = Math.round(Math.abs((checkInDate - checkOutDate) / oneDay));
+                    var totalPrice = @Model.DailyPrice;
+
+                    totalPriceInput.value = totalNights * dailyPrice;
+                } else {
+                    totalPriceInput.value = '';
+                }
+            }
+        });
+    </script>
+}

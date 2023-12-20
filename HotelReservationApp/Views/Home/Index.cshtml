@@ -1,0 +1,32 @@
+﻿@model CityViewModel
+
+@{
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<!-- site banner-->
+<section class="w3l-main-slider" id="home">
+    <div class="banner-content">
+        <div id="demo-1"
+             data-zs-src='["~/Template/assets/images/banner1.jpg", "~/Template/assets/images/banner2.jpg","~/Template/assets/images/banner3.jpg", "~/Template/assets/images/banner4.jpg"]'
+             data-zs-overlay="dots">
+            <div class="demo-inner-content">
+                <div class="container">
+                    <div class="banner-infhny">
+                        <h3>Otel</h3>
+                        <h6 class="mb-3">Gitmek istediğiniz şehiri seçiniz.</h6>
+                        <div class="flex-wrap search-wthree-field mt-md-5 mt-4">
+                            <form method="post" asp-controller="Home" asp-action="ListHotels">
+                                <label for="SelectedCityId">Şehir:</label>
+                                <select asp-for="SelectedCityId" asp-items="new SelectList(Model.Cities, nameof(City.Id), nameof(City.Name))">
+                                    <option value="">-- Şehir Seçin --</option>
+                                </select>
+                                <button type="submit">Otelleri Listele</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

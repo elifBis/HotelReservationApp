@@ -1,0 +1,44 @@
+﻿@model List<City>
+@{
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<!-- site banner-->
+<section class="w3l-main-slider" id="home">
+    <div class="banner-content">
+        <div id="demo-1"
+             data-zs-src='["/Template/assets/images/banner1.jpg", "/Template/assets/images/banner2.jpg","/Template/assets/images/banner3.jpg", "/Template/assets/images/banner4.jpg"]'
+             data-zs-overlay="dots">
+            <div class="demo-inner-content">
+                <div class="container">
+                    <div class="banner-infhny">
+                        <h3>Otel</h3>
+                        <h6 class="mb-3">Gitmek istediğiniz şehiri seçiniz.</h6>
+                        <div class="flex-wrap search-wthree-field mt-md-5 mt-4">
+                            <form action="#" method="post" class="booking-form">
+                                <div class="row book-form">
+                                    <div class="form-input col-md-4 mt-md-0 mt-3">
+                                     
+                                        <select name="selectpicker" class="selectpicker">
+                                            @foreach (var item in Model)
+                                            {
+                                            <option value="">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="bottom-btn col-md-4 mt-md-0 mt-3">
+                                        <button class="btn btn-style btn-secondary" >
+                                            <span class="fa fa-search mr-3"
+                                                  aria-hidden="true"></span><a href="/Otel/Index">Ara</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
