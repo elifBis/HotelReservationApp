@@ -1,0 +1,55 @@
+﻿
+
+@model RoomType
+
+@{
+    ViewData["Title"] = "AddRoomType";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">RoomType</h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Anasayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> RoomType </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="container container-center" style="padding:20px">
+
+<h3>Oda Türü Ekle</h3>
+
+<form method="post">
+    <div class="form-group">
+        @Html.Label("Name")
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Capacity")
+        <input type="text" asp-for="Capacity" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Category")
+        <input type="text" asp-for="Category" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Gecelik Fiyat")
+        <input type="text" asp-for="PricePerNight" class="form-control" />
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.Label("Hotel Id")
+        <input type="text" asp-for="HotelId" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-outline-primary">Oluştur</button>
+</form>
+
+        </div>

@@ -1,0 +1,46 @@
+﻿@model Hotel
+
+@{
+    ViewData["Title"] = "AddHotel";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">Otel</h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Anasayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Otel </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<div class="container container-center" style="padding:20px">
+
+<h3>Otel Ekle</h3>
+
+<h1>Yeni Rota Oluşturma Sayfası</h1>
+<form method="post">
+    <div class="form-group">
+        @Html.Label("Otel Adı")
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Şehir Id")
+        <input type="text" asp-for="CityId" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Açıklama")
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Ana Görsel")
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-outline-primary">Oluştur</button>
+</form>
+</div>

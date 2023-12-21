@@ -1,0 +1,33 @@
+﻿@model City
+
+
+@{
+    ViewData["Title"] = "AddCity";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">City</h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Anasayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> City </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="container container-center" style="padding:20px">
+
+    <h3>Şehir Ekle</h3>
+
+    <form method="post">
+        <div class="form-group">
+            @Html.Label("Name")
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+        <button class="btn btn-outline-primary">Oluştur</button>
+    </form>
+
+</div>

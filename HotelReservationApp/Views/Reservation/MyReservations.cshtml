@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "MyReservations";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+@model List<UserReservationViewModel>
+
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">Rezervasyonlarım </h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Anasayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Rezervasyonlarım </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="container" style="padding:20px">
+    <h2>Geçmiş Rezervasyonlar</h2>
+    <br />
+    <div class="table-responsive-sm">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Check-In Date</th>
+                    <th>Check-Out Date</th>
+                    <th>Hotel Name</th>
+                    <th>Total Price</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+                {
+                    <tr>
+                        <td>@reservation.ReservationId</td>
+                        <td>@reservation.CheckInDate.ToShortDateString()</td>
+                        <td>@reservation.CheckOutDate.ToShortDateString()</td>
+                        <td>@reservation.HotelName</td>
+                        <td>@reservation.TotalPrice</td>
+                        <td>
+                            <form asp-action="CancelReservation" asp-route-reservationId="@reservation.ReservationId" method="post">
+                                <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
