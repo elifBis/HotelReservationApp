@@ -12,7 +12,7 @@ namespace HotelReservationApp.Models
         public int RoomTypeId { get; set; }
         public RoomType RoomType { get; set; }
 
-        public string UserId { get; set; } // Identity kullanılarak eklenen kullanıcı kimliği
+        public string UserId { get; set; } // Identity 
 
         public int TotalPrice { get; set; }
 

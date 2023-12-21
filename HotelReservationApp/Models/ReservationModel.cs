@@ -12,7 +12,7 @@ namespace HotelReservationApp.Models
 
         public int TotalPrice { get; set; }
 
-        public int DailyPrice { get; set;}
+        public int DailyPrice { get; set; }
 
     }
 }

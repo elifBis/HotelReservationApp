@@ -18,7 +18,6 @@ public class MyDbContext : IdentityDbContext<AppUser>
     public DbSet<RoomType>  RoomTypes{ get; set; }
     public DbSet<Reservation> Reservations { get; set; }
     public DbSet<City> Cities { get; set; }
-    //public DbSet<About> Abou { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

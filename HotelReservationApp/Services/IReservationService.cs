@@ -1,12 +1,12 @@
-﻿
-using HotelReservationApp.Models;
+﻿using HotelReservationApp.Models;
 using System.Collections.Generic;
 
 namespace HotelReservationApp.Services
 {
     public interface IReservationService
     {
+        List<UserReservationViewModel> GetUserReservations(string userId);
         bool MakeReservation(string userId, ReservationModel reservationModel);
-        //int CalculateTotalPrice(int roomTypeId, DateTime checkInDate, DateTime checkOutDate, int pricePerNight);
+        public bool CancelReservation(string userId, int reservationId);
     }
 }

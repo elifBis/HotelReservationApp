@@ -4,6 +4,10 @@ namespace HotelReservationApp.Services
 {
     public interface IHotelService:IGenericService<Hotel>
     {
-        //List<Hotel> GetHotelsInCity(int cityId);
+        public List<HotelViewModel> GetAllHotels();
+        public Hotel GetHotelById(int id);
+        public List<RoomType> GetRoomTypesByHotelId(int hotelId);
+
+
     }
 }

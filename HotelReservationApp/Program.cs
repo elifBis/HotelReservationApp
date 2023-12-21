@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using HotelReservationApp.Areas.Identity.Data;
 using HotelReservationApp.Managers;
 using HotelReservationApp.Services;
-using HotelReservationApp.DataAccess.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MyDbContextConnection") ?? throw new InvalidOperationException("Connection string 'MyDbContextConnection' not found.");
@@ -11,7 +10,7 @@ var connectionString = builder.Configuration.GetConnectionString("MyDbContextCon
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<MyDbContext>();
 
 // Add services to the container.
@@ -20,6 +19,8 @@ builder.Services.AddScoped<HotelService>();
 builder.Services.AddScoped<CityService>();
 builder.Services.AddScoped<IRoomTypeService, RoomTypeService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IHotelService, HotelService>();
+
 
 
 

@@ -2,7 +2,7 @@
 {
     public class HotelDetailsViewModel
     {
-       public Hotel Hotel { get; set; }
-       public List<RoomType> RoomTypes { get; set; }
+        public Hotel Hotel { get; set; }
+        public List<RoomType> RoomTypes { get; set; }
     }
 }

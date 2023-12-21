@@ -7,6 +7,5 @@
         void TUpdate(T t);
         T TGetByID(int id);
         List<T> TGetList();
-       // List<T> GetListByFilter(Expression<Func<T, bool>> filter);
     }
 }

@@ -1,39 +1,9 @@
-﻿@* @model List<Hotel>
-@{
-    ViewData["Title"] = "HotelList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>HotelList</h1>
-
-<h2>Seçilen Şehirdeki Oteller</h2>
-
-@if (Model.Any())
-{
-    <ul>
-        @foreach (var hotel in Model)
-        {
-            <li>
-                <strong>@hotel.Name</strong>
-                <p>@hotel.Description</p>
-                <!-- Diğer otel bilgileri... -->
-                <!-- Otel detay sayfasına giden bağlantı -->
-                <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">Detayları Gör</a>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>Seçilen şehirde otel bulunamadı.</p>
-} *@
-
+﻿
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
-@* @using EntityLayer.Concrete
-@model List<Otel> *@
+
 @model List<Hotel>
 
 
@@ -56,48 +26,43 @@ else
         </div>
     </section>
 
-   
-    
+
+
     <section class="grids-1 py-5">
         <div class="grids py-lg-5 py-md-4">
-             
             <div class="container">
+
                 <h3 class="hny-title mb-5">Oteller</h3>
-                
+
                 <div class="row">
-@*                     @foreach (var item in Model)
-                    {
-                    <div class="col-lg-4 col-md-4 col-6">
-                        <div class="column">
-                            <a href="/OtelDetay/Index"><img src="/Template/assets/images/g1.jpg" alt="" class="img-fluid"></a>
-                            <div class="info">
-                                <h4><a href="/OtelDetay/Index">@item.OtelAd</a></h4>
-                                <p>@item.OtelBolge</p>
-                
-                            </div>
-                            
-                        </div>
-                    </div>
-              } *@
                     @foreach (var hotel in Model)
                     {
-                        <li>
-                            <strong>@hotel.Name</strong>
-                            <p>@hotel.Description</p>
-                            <!-- Diğer otel bilgileri... -->
-                            <!-- Otel detay sayfasına giden bağlantı -->
-                            <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">Detayları Gör</a>
-                        </li>
-                    }
-                </div>
-                
-            </div>
-            
-        </div>
-        
-    </section>
+                        <div class="col-lg-4 col-md-4 col-6">
 
-   
+                            <div class="column">
+
+                                <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })"><img src="@hotel.ImageUrl" alt="" class="img-fluid"></a>
+                                <div class="info">
+                                    <h4><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.City</a></h4>
+                                    <p>@hotel.Name</p>
+                                    <div class="dst-btm">
+                                        <h6 class="">@hotel.Description</h6>
+                                        <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">Detayları Gör</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
 
 
 
@@ -108,4 +73,3 @@ else
 </body>
 
 </html>
-

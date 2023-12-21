@@ -1,4 +1,6 @@
-﻿using HotelReservationApp.Services;
+﻿using HotelReservationApp.Managers;
+using HotelReservationApp.Models;
+using HotelReservationApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservationApp.Controllers
@@ -6,14 +8,22 @@ namespace HotelReservationApp.Controllers
     public class CityController : Controller
     {
         private readonly IHotelService _hotelService;
-
+        private readonly ICityService _cityService;
+        
+        public CityController(IHotelService hotelService, ICityService cityService)
+        {
+            _cityService = cityService;
+            _hotelService = hotelService;
+        }
         public IActionResult Index()
         {
             return View();
         }
-        public CityController(IHotelService hotelService)
+        [HttpPost]
+        public IActionResult AddCity(City city)
         {
-            _hotelService = hotelService;
+            _cityService.TAdd(city);
+            return RedirectToAction("Index");
         }
 
         //public IActionResult ListHotels(int cityId)

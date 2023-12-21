@@ -1,5 +1,7 @@
-﻿using HotelReservationApp.Managers;
+﻿
+using HotelReservationApp.Managers;
 using HotelReservationApp.Models;
+using HotelReservationApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,17 +9,18 @@ namespace HotelReservationApp.Controllers
 {
     public class HotelController : Controller
     {
-        private readonly HotelService _hotelService;
+        private readonly IHotelService _hotelService;
 
-        public HotelController(HotelService hotelService)
+        public HotelController(IHotelService hotelService)
         {
             _hotelService = hotelService;
         }
+
+        [HttpGet]
         public IActionResult Index(int cityId)
         {
-            // Seçilen şehirdeki otelleri listeleyen eylem
-            // Burada otelleri hotel modelinden alabilirsiniz
-            return View();
+            var hotels = _hotelService.GetAllHotels();
+            return View(hotels);
         }
 
         public IActionResult Details(int id)
@@ -39,5 +42,59 @@ namespace HotelReservationApp.Controllers
 
             return View(hotelDetailsViewModel);
         }
+
+
+        public IActionResult AddHotel()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddHotel(Hotel hotel)
+        {
+
+                _hotelService.TAdd(hotel);
+                return RedirectToAction("Index");
+           
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Hotel hotel = _hotelService.GetHotelById(id);
+            if (hotel == null)
+            {
+                return NotFound();
+            }
+
+            return View(hotel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Hotel hotel)
+        {
+            if (ModelState.IsValid)
+            {
+                _hotelService.TUpdate(hotel);
+                return RedirectToAction("Index", "Hotel");
+            }
+
+            return View(hotel);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Hotel hotel = _hotelService.GetHotelById(id);
+            if (hotel == null)
+            {
+                return NotFound();
+            }
+
+            return View(hotel);
+        }
+
     }
+
+
+
 }
+

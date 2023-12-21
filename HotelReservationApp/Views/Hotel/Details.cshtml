@@ -22,17 +22,65 @@
 @model HotelReservationApp.Models.HotelDetailsViewModel
 @{
     ViewData["Title"] = "HotelDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
 <h1>@Model.Hotel.Name</h1>
 
 <!-- Diğer otel detay bilgileri... -->
-@foreach (var roomType in Model.RoomTypes)
-{
-    <div>
-        <h3><a asp-controller="Reservation" asp-action="MakeReservation" asp-route-roomTypeId="@roomType.Id">@roomType.Name</a></h3>
-        <p>@roomType.Name</p>
-        <p>Günlük Fiyat: @roomType.PricePerNight</p>
+
+
+
+
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">Oda Özellikleri </h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="#url">Anasayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Oda Özellikleri </li>
+            </ul>
+        </div>
     </div>
-}
+</section>
+
+<section class="grids-1 py-5">
+    <div class="grids py-lg-5 py-md-4">
+        <div class="container">
+
+
+            <h3 class="hny-title mb-5">Oda Özellikleri</h3>
+
+            <div class="row">
+
+                @foreach (var roomType in Model.RoomTypes)
+                {
+
+                    <div class="col-lg-4 col-md-4 col-6">
+
+                        <div class="column">
+
+                            <div class="container" style="background-color:lightblue; padding: 25px;">
+                                <div class="info">
+                                    <h3><a asp-controller="Reservation" asp-action="MakeReservation" asp-route-roomTypeId="@roomType.Id">@roomType.Name</a></h3>
+
+                                    <p>Oda Kapasitesi : @roomType.Capacity Kişilik</p>
+                                    <div class="dst-btm">
+                                        <h6 class="">Günlük Fiyat: @roomType.PricePerNight TL</h6>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+
+</section>

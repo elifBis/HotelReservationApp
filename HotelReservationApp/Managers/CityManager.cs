@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationApp.Services
 {
-    public class CityService
+    public class CityService:IGenericService<City>
     {
         private readonly MyDbContext _dbContext;
 
@@ -24,6 +24,32 @@ namespace HotelReservationApp.Services
             return _dbContext.Hotels
                 .Where(h => h.CityId == cityId)
                 .ToList();
+        }
+
+        public void TAdd(City t)
+        {
+            _dbContext.Cities.Add(t);
+            _dbContext.SaveChanges();
+        }
+
+        public void TDelete(City t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public City TGetByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<City> TGetList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(City t)
+        {
+            throw new NotImplementedException();
         }
     }
 

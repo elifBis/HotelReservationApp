@@ -1,5 +1,4 @@
-﻿
-using HotelReservationApp.Models;
+﻿using HotelReservationApp.Models;
 using HotelReservationApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,12 +22,6 @@ namespace HotelReservationApp.Controllers
         [HttpGet]
         public IActionResult MakeReservation(int roomTypeId)
         {
-            //var roomType = _roomTypeService.GetRoomTypeById(roomTypeId);
-
-            //if (roomType == null)
-            //{
-            //    return NotFound();
-            //}
             int dailyPrice = _roomTypeService.GetRoomTypeById(roomTypeId).PricePerNight;
 
             var model = new ReservationModel
@@ -53,17 +46,48 @@ namespace HotelReservationApp.Controllers
 
                 if (success)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("MyReservations", "Reservation");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Reservation could not be made.");
+                    ModelState.AddModelError(string.Empty, "Rezervasyon Yapılamadı.");
                 }
             }
 
             return View(reservationModel);
         }
 
+        public IActionResult MyReservations()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var reservations = _reservationService.GetUserReservations(userId);
 
+            return View(reservations);
+        }
+
+        [HttpPost]
+        public IActionResult CancelReservation(int reservationId)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var success = _reservationService.CancelReservation(userId, reservationId);
+
+                if (success)
+                {
+                    return RedirectToAction("MyReservations"); 
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Reservation cancellation failed.";
+                    return RedirectToAction("MyReservations");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "An error occurred while canceling the reservation.";
+                return RedirectToAction("MyReservations");
+            }
+        }
     }
 }
